@@ -1,12 +1,10 @@
-public class Drone{ //classe Drone mesclada com Frota
+public class Drone{ //classe Drone (criar uma apenas para Frota)
 
     // ATRIBUTOS
     private int idDrone;
-    private int idFrota;
     private String modelo;
     private double statusBateria;
     private Posicao posicaoGPS;
-    private drones <Drones>;
 
 
     // METODOS
@@ -38,16 +36,6 @@ public class Drone{ //classe Drone mesclada com Frota
         return true;
     }
 
-    public void adicionarDrone(drone){
-        
-    }
-
-    public void removerDrone(idDrone){
-
-
-        return true;
-    }
-
     public void enviarComando(comando){
 
     }
@@ -60,4 +48,7 @@ public class Drone{ //classe Drone mesclada com Frota
         
     }
 
+    public int getIdDrone(){
+        return idDrone;
+    }
 }
