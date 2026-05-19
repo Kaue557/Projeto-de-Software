@@ -39,7 +39,7 @@ public class Frota {
             resumo.append(" -> Drone [ID: ").append(drone.getIdDrone())
                     .append(" | Modelo: ").append(drone.getModelo())
                     .append("]\n");
-            // Nota: Se a classe Frota e Drone estiverem no mesmo "package" (pasta),
+            // Nota: Se a classe Frota e Drone estiverem na mesma pasta (package)
             // a Frota consegue acessar o metodo protected getStatusBateria() do Drone.
         }
 

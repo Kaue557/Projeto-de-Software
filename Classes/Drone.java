@@ -34,10 +34,10 @@ public abstract class Drone {
         return this.statusBateria;
     }
 
-    // MÉTODOS ABSTRATOS (Cada modelo implementa o seu)
+    // MÉTODOS ABSTRATOS (cada modelo implementa o seu)
     public abstract void decolar();
 
-    // MÉTODOS CONCRETOS (Lógica compartilhada por todos os drones)
+    // MÉTODOS CONCRETOS (lógica compartilhada por todos os drones)
 
     public void enviarTelemetria() {
         // Como todos enviam telemetria da mesma forma, fazemos aqui
