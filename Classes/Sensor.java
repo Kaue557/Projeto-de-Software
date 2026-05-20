@@ -4,7 +4,8 @@ public class Sensor {
     public enum Tipo {
         LIDAR,
         GPS,
-        CAMERA // Adicionado com base no RF-04 (Visão Computacional)
+        CAMERA
+        // Adicionado com base no RF-04 (Visão Computacional)
     }
 
     // ATRIBUTOS PRIVADOS*
