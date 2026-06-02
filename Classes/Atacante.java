@@ -21,7 +21,7 @@ public abstract class Drone {
     public abstract void decolar(); // Cada modelo decide "como" decola
 }
 
-// A Especialização Concreta (Modelo Específico) [cite: 597]
+// A Especialização Concreta (Modelo Específico)
 public class DroneAquilaX extends Drone implements Atacante {
     
     public DroneAquilaX(int id) {
