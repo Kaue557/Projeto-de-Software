@@ -28,7 +28,7 @@ public class Missao {
     public void iniciar() {
         if (this.emAndamento) {
             System.out.println("Aviso: A missão " + this.codigoMissao + " já está em andamento.");
-            return; // Impede que o método continue executando
+            return; // Impede que o metodo continue executando
         }
 
         this.emAndamento = true;
