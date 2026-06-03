@@ -2,6 +2,11 @@ import java.util.Scanner;
 import java.util.Random;
 import java.util.InputMismatchException;
 
+/*
+Kauê Lima Rodrigues Meneses     10410594
+Rayana Pimentel Marques Lopes   10435370
+*/
+
 public class SistemaCentral {
 
     public static void main(String[] args) throws InterruptedException {

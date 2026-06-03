@@ -1,0 +1,56 @@
+-- Tabela para armazenar as coordenadas (Classe Posicao)
+CREATE TABLE posicao (
+    id BIGSERIAL PRIMARY KEY,
+    latitude NUMERIC(10, 8) NOT NULL CHECK (latitude BETWEEN -90 AND 90),
+    longitude NUMERIC(11, 8) NOT NULL CHECK (longitude BETWEEN -180 AND 180),
+    altitude NUMERIC(10, 2) NOT NULL [cite: 247, 265, 272]
+);
+
+-- Tabela para os operadores do sistema (Classe Operador)
+CREATE TABLE operador (
+    id BIGSERIAL PRIMARY KEY,
+    registro INTEGER NOT NULL UNIQUE, -- Requisito de unicidade para identificação
+    nivel_acesso INTEGER NOT NULL,
+    biometria TEXT NOT NULL -- Armazenamento do hash/token
+);
+
+
+-- Tabela de Drones (Classe Drone)
+CREATE TABLE drone (
+    id_drone BIGSERIAL PRIMARY KEY,
+    modelo VARCHAR(100) NOT NULL,
+    status_bateria NUMERIC(5, 2) NOT NULL CHECK (status_bateria >= 0 AND status_bateria <= 100),
+    id_frota INTEGER NOT NULL, -- Identificador da frota a qual pertence
+    posicao_id BIGINT UNIQUE REFERENCES posicao(id) ON DELETE SET NULL -- Relação 1:1
+);
+
+
+-- Tabela de Sensores (Classe Sensor - Composição com Drone)
+CREATE TABLE sensor (
+    id BIGSERIAL PRIMARY KEY,
+    tipo VARCHAR(50) NOT NULL, -- Representação do Enum
+    estah_operacional BOOLEAN NOT NULL DEFAULT TRUE,
+    alcance_maximo NUMERIC(10, 2),
+    drone_id BIGINT NOT NULL REFERENCES drone(id_drone)
+        ON UPDATE CASCADE ON DELETE CASCADE -- Regra de Composição, se o Drone é destruído, o sensor vai junto
+);
+
+
+
+-- Tabela de Missões (Classe Missao)
+CREATE TABLE missao (
+    id BIGSERIAL PRIMARY KEY,
+    codigo_missao INTEGER NOT NULL UNIQUE,
+    data_inicio TIMESTAMP NOT NULL DEFAULT NOW(), -- Uso de timestamp para tempo real
+    objetivo TEXT,
+    operador_id BIGINT NOT NULL REFERENCES operador(id) ON DELETE RESTRICT -- Agregação
+);
+
+-- Tabela de Logs (Classe BancoDados / Auditoria)
+CREATE TABLE log_auditoria (
+    id BIGSERIAL PRIMARY KEY,
+    id_banco_origem INTEGER,
+    missao_id BIGINT REFERENCES missao(id),
+    evento TEXT NOT NULL,
+    data_hora TIMESTAMP NOT NULL DEFAULT NOW()
+);
